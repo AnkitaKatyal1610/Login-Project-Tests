@@ -1,0 +1,9 @@
+.Login {
+    margin: auto;
+    width: 300px;
+    margin-top: 75px;
+    text-align: center;
+    border: 3px solid grey;
+    padding: 15px;
+    border-radius: 9px 
+}
