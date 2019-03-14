@@ -1,10 +1,12 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import renderer from 'react-test-renderer';
 
 import { Login } from './login';
 
 Enzyme.configure({ adapter: new Adapter() });
+
 
 let promise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -21,6 +23,12 @@ describe('login component', () => {
     beforeEach(() => {
         wrapper = shallow(<Login {...props} />);
     })
+
+    it('matches snapshot', () => {
+        const tree = renderer.create(<Login />).toJSON();
+        expect(tree).toMatchSnapshot();
+    })
+
     it('has two text inputs', () => {
         const textInputs = wrapper.find('Input')
         expect(textInputs.length).toEqual(2);
@@ -39,7 +47,7 @@ describe('login component', () => {
     })
 
     it('changes the state on change event in the input fields', () => {
-        const emailInput = wrapper.find('Input[type="email"]')
+        const emailInput = wrapper.find('Input[type="text"]')
         const passwrdInput = wrapper.find('Input[type="password"]')
         emailInput.simulate('change', {
             target: { value: 'test@test.com' }
@@ -68,7 +76,7 @@ describe('login component', () => {
         expect(props.loginAction).toHaveBeenCalledTimes(0)
     })
     it('calls login action when email and password are set', () => {
-        const emailInput = wrapper.find('Input[type="email"]')
+        const emailInput = wrapper.find('Input[type="text"]')
         const passwrdInput = wrapper.find('Input[type="password"]')
         emailInput.simulate('change', {
             target: { value: 'test@test.com' }
@@ -80,6 +88,4 @@ describe('login component', () => {
         button.simulate('click');
         expect(props.loginAction).toHaveBeenCalled()
     })
-
-
 })

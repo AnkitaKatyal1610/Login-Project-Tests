@@ -29,7 +29,7 @@ export class Login extends Component {
             <div className='Login'>
                 <Form>
                     <Form.Field>
-                        <Input value={this.state.email} icon='user circle' iconPosition='left' type='email' onChange={(event) => { this.setState({ email: event.target.value, submitted: false, invalid: false }) }} placeholder='Email' />
+                        <Input value={this.state.email} icon='user circle' iconPosition='left' type='text' onChange={(event) => { this.setState({ email: event.target.value, submitted: false, invalid: false }) }} placeholder='Email or Username' />
                         {this.state.submitted && this.state.email === '' ? <Label color='red' pointing>Please enter your email</Label> : null}
                     </Form.Field>
                     <Form.Field>

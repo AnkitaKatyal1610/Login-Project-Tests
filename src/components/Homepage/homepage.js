@@ -17,15 +17,12 @@ export class Homepage extends Component {
         if (this.props.token === '' && !token) {
             this.props.history.replace('/login');
         }
-        if (this.props.getUsersAction)
-            this.props.getUsersAction(this.state.page);
+        this.props.getUsersAction(this.state.page);
 
     }
     logoutClicked = () => {
-        if (this.props.logoutAction) {
-            this.props.logoutAction();
-            this.props.history.replace('/login');
-        }
+        this.props.logoutAction();
+        this.props.history.replace('/login');
     }
 
     setPageNum = (e, data) => {
@@ -35,7 +32,7 @@ export class Homepage extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{ margin: "15px" }}>
                 <h2>Welcome, you have logged in successfully</h2>{" "}
                 <Button onClick={this.logoutClicked} color='orange'>Logout</Button>
                 <Table textAlign='center' inverted>
@@ -50,21 +47,24 @@ export class Homepage extends Component {
                     </Table.Header>
                     <Table.Body>
                         {
-                            (!this.props.users) ? null : this.props.users.map((user, i) => {
+                            this.props.users.map((user, i) => {
                                 return (
                                     <Table.Row key={i}>
                                         <Table.Cell>{i + 1 + (this.state.page - 1) * 3}</Table.Cell>
                                         <Table.Cell><Image centered src={user.avatar} size='mini' circular /></Table.Cell>
                                         <Table.Cell>{user.first_name}</Table.Cell>
                                         <Table.Cell>{user.last_name}</Table.Cell>
-                                        <Table.Cell><Button color='blue'>Edit</Button><Button color='red'>Delete</Button></Table.Cell>
+                                        <Table.Cell>
+                                            <Button color='blue'>Edit</Button>
+                                            <Button color='red'>Delete</Button>
+                                        </Table.Cell>
                                     </Table.Row>
                                 )
                             })
                         }
                     </Table.Body>
                 </Table>
-                <Pagination defaultActivePage={this.state.page} onPageChange={this.setPageNum}
+                <Pagination activePage={this.state.page} onPageChange={this.setPageNum}
                     totalPages={4} prevItem={{ content: <Icon name="angle left" size='small' />, icon: true }}
                     nextItem={{ content: <Icon name="angle right" size='small' />, icon: true }}
                     firstItem={{ content: <Icon name="caret left" size='small' />, icon: true }}

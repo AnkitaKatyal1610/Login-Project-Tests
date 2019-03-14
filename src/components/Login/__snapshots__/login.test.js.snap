@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login component matches snapshot 1`] = `
+<div
+  className="Login"
+>
+  <form
+    className="ui form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="field"
+    >
+      <div
+        className="ui left icon input"
+      >
+        <input
+          onChange={[Function]}
+          placeholder="Email or Username"
+          type="text"
+          value=""
+        />
+        <i
+          aria-hidden="true"
+          className="user circle icon"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="ui left icon input"
+      >
+        <input
+          onChange={[Function]}
+          placeholder="Password"
+          type="password"
+          value=""
+        />
+        <i
+          aria-hidden="true"
+          className="lock icon"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+    <button
+      className="ui blue button"
+      onClick={[Function]}
+    >
+      Login
+    </button>
+  </form>
+</div>
+`;
